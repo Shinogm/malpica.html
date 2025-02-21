@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tienda</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <div id="gallery"></div> <!-- Contenedor de imágenes -->
+  <div id="result" style="display: none; text-align: center; margin-top: 20px;">
+    <img id="packetaxoImg" src="" alt="Packetaxo" style="max-width: 300px;">
+  </div>
+
+  <script>
+    const images = [
+      {
+          refId: 1,
+          packetaxo: "https://i5-mx.walmartimages.com/gr/images/product-images/img_large/00750101115490L.jpg",
+          items: [
+              {
+                  name: "cheetos",
+                  src: "https://tiendakatracha504.com/cdn/shop/files/F12C435F-AAEF-44F5-899C-CE950833BD2A.jpg?v=1717040602&width=1946",
+              },
+              {
+                  name: "Fritos",
+                  src: "https://i5-mx.walmartimages.com/gr/images/product-images/img_large/00750101113112L.jpg",
+              },
+              {
+                  name: "Sabritas",
+                  src: "https://i5-mx.walmartimages.com/gr/images/product-images/img_large/00750101114943L.jpg?odnHeight=612&odnWidth=612&odnBg=FFFFFF",
+              },
+              {
+                  name: "Rancheritos",
+                  src: "https://i5-mx.walmartimages.com/gr/images/product-images/img_large/00750101116775L.jpg",
+              }
+          ]
+      },
+      {
+        refId: 2,
+        packetaxo: "https://i5-mx.walmartimages.com/gr/images/product-images/img_large/00750047803426L.jpg",
+        items: [
+            {
+                name: "Cheetos PUfFS",
+                src: "https://byrinc.ca/data/images/products/1590374328-CHETOSAPUFFS.jpg",
+            },
+            {
+                name: "Doritos 3d",
+                src: "https://http2.mlstatic.com/D_NQ_NP_675229-MLU78260000940_082024-O.webp",
+            },
+            {
+                name: "Crujitos",
+                src: "https://i5-mx.walmartimages.com/gr/images/product-images/img_large/00750101113104L.jpg",
+            },
+            {
+                name: "Chetos corn",
+                src: "https://i5-mx.walmartimages.com/gr/images/product-images/img_large/00750047803494L.jpg",
+            }
+        ]
+      }
+    ];
+
+    const gallery = document.getElementById("gallery");
+    const result = document.getElementById("result");
+    const packetaxoImg = document.getElementById("packetaxoImg");
+
+    let selectedImages = [];
+    let packetaxoVisible = false; 
+    images.forEach(imageGroup => {
+      imageGroup.items.forEach(item => {
+        const div = document.createElement("div");
+        div.classList.add("any");
+
+        const img = document.createElement("img");
+        img.src = item.src;
+        img.alt = item.name;
+        img.style.cursor = "pointer";
+        img.onclick = () => {
+          if (packetaxoVisible) return;
+
+          if (!selectedImages.some(sel => sel.src === item.src)) {
+            selectedImages.push({src: item.src, groupRefId: imageGroup.refId});
+            img.style.border = "3px solid green"; 
+          } else {
+            selectedImages = selectedImages.filter(sel => sel.src !== item.src);
+            img.style.border = "none";
+          }
+
+          const groupSelected = selectedImages.filter(sel => sel.groupRefId === imageGroup.refId);
+          if (groupSelected.length === imageGroup.items.length) {
+            packetaxoImg.src = imageGroup.packetaxo;
+            result.style.display = "block";
+            packetaxoVisible = true;
+          } else {
+            result.style.display = "none";
+          }
+        };
+
+        div.appendChild(img);
+        gallery.appendChild(div);
+      });
+    });
+
+    result.addEventListener("click", () => {
+      result.style.display = "none";
+      packetaxoVisible = false;
+      selectedImages = []; 
+      const allImgs = document.querySelectorAll("img");
+      allImgs.forEach(img => {
+        img.style.border = "none";
+      });
+    });
+  </script>
+
+</body>
+</html>

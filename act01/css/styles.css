@@ -1,0 +1,20 @@
+/* Estilos para los div */
+.box {
+    padding: 20px;
+    margin: 10px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Colores */
+.blue {
+    background-color: blue;
+}
+
+.green {
+    background-color: lightgreen;
+}
+
+.red {
+    background-color: red;
+}

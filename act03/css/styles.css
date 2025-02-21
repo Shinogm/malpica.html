@@ -1,0 +1,39 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap'); /* Fuente cursiva */
+
+/* Estilos generales */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Estilos para los div */
+.box {
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Colores y fuentes */
+.blue {
+    background-color: #007BFF;
+    font-family: 'Roboto', sans-serif;
+}
+
+.green {
+    background-color: #28A745;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
+
+.red {
+    background-color: #DC3545;
+    font-family: 'Dancing Script', cursive;
+    font-weight: 400;
+}
