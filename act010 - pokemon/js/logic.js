@@ -201,6 +201,15 @@ const cardPokemon = [
         speed: 100,
         tall: 1.6,
         img: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/145.png"
+    },
+    {
+        name: "Ampharos",
+        type: "electric",
+        atq: 75,
+        def: 85,
+        speed: 55,
+        tall: 1.4,
+        img: "https://assets.pokemon.com/assets/cms2/img/pokedex/full/181.png"
     }
 ];
 document.addEventListener('DOMContentLoaded', function() {
