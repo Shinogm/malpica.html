@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Figuras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        input, button {
+            margin: 10px 0;
+            padding: 8px;
+            width: 90%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Rectángulo</h2>
+        <input type="number" id="rectBase" placeholder="Base">
+        <input type="number" id="rectAltura" placeholder="Altura">
+        <button onclick="calcularRectangulo()">Calcular</button>
+        <p id="rectResultado"></p>
+    </div>
+
+    <div class="container">
+        <h2>Calculadora de Triángulo</h2>
+        <input type="number" id="triBase" placeholder="Base">
+        <input type="number" id="triAltura" placeholder="Altura">
+        <input type="number" id="triLado1" placeholder="Lado 1">
+        <input type="number" id="triLado2" placeholder="Lado 2">
+        <input type="number" id="triLado3" placeholder="Lado 3">
+        <button onclick="calcularTriangulo()">Calcular</button>
+        <p id="triResultado"></p>
+    </div>
+
+    <script>
+        class Rectangulo {
+            constructor(base) {
+                this.base = parseFloat(base);
+                this.altura = parseFloat(base); 
+            }
+            area() {
+                return this.base * this.altura;
+            }
+            perimetro() {
+                return 2 * (this.base + this.altura);
+            }
+        }
+
+
+        class Triangulo {
+            constructor(base, altura, lado1, lado2, lado3) {
+                this.base = parseFloat(base);
+                this.altura = parseFloat(altura);
+                this.lados = [parseFloat(lado1), parseFloat(lado2), parseFloat(lado3)];
+            }
+            area() {
+                return (this.base * this.altura) / 2;
+            }
+            perimetro() {
+                return this.lados.reduce((acc, lado) => acc + lado, 0);
+            }
+        }
+
+        function calcularRectangulo() {
+            let base = document.getElementById("rectBase").value;
+            let altura = document.getElementById("rectAltura").value;
+            let rect = new Rectangulo(base, altura);
+            document.getElementById("rectResultado").innerText = `Área: ${rect.area()} - Perímetro: ${rect.perimetro()}`;
+        }
+
+        function calcularTriangulo() {
+            let base = document.getElementById("triBase").value;
+            let altura = document.getElementById("triAltura").value;
+            let lado1 = document.getElementById("triLado1").value;
+            let lado2 = document.getElementById("triLado2").value;
+            let lado3 = document.getElementById("triLado3").value;
+            let tri = new Triangulo(base, altura, lado1, lado2, lado3);
+            document.getElementById("triResultado").innerText = `Área: ${tri.area()} - Perímetro: ${tri.perimetro()}`;
+        }
+    </script>
+</body>
+</html>

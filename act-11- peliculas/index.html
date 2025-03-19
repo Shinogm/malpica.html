@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Catálogo de Películas</h1>
+        <div id="peliculas-container"></div>
+    </div>
+
+    <script type="module">
+        import { Logic } from './js/logic.js';
+        
+        const logic = new Logic();
+        const movies = logic.getMovies();
+        const peliculasContainer = document.getElementById('peliculas-container');
+        
+        movies.forEach(movie => {
+            const movieCard = document.createElement('div');
+            movieCard.className = 'movie-card';
+            
+            movieCard.innerHTML = `
+                <h2>${movie.titulo}</h2>
+                <p><strong>Director:</strong> ${movie.director}</p>
+                <p><strong>Clasificación:</strong> ${movie.clasificacion}</p>
+                <p><strong>Género:</strong> ${movie.genero}</p>
+                <p><strong>Año de estreno:</strong> ${movie.anioEstreno}</p>
+                <p><strong>Antigüedad:</strong> ${movie.calcularAntiguedad()} años</p>
+                <p><strong>Calificación promedio:</strong> ${movie.calcularPromedioCalificacion().toFixed(1)}/5</p>
+                <div class="rating-container">
+                    <h3>Calificar:</h3>
+                    <div class="stars">
+                        <span class="star" data-value="1">★</span>
+                        <span class="star" data-value="2">★</span>
+                        <span class="star" data-value="3">★</span>
+                        <span class="star" data-value="4">★</span>
+                        <span class="star" data-value="5">★</span>
+                    </div>
+                </div>
+            `;
+            
+            const stars = movieCard.querySelectorAll('.star');
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const value = parseInt(star.dataset.value);
+                    movie.agregarCalificacion(value);
+                    const newRating = movie.calcularPromedioCalificacion().toFixed(1);
+                    movieCard.querySelector('p:last-of-type').innerHTML = `<strong>Calificación promedio:</strong> ${newRating}/5`;
+                });
+            });
+            
+            peliculasContainer.appendChild(movieCard);
+        });
+    </script>
+</body>
+</html>
