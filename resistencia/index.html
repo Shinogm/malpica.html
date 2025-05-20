@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Código Colores Resistencia</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+    <div class="calculator">
+        <h1>Calculadora de Código de Colores de Resistencia</h1>
+
+        <div class="input-group">
+            <label for="band-count">Número de Bandas:</label>
+            <select id="band-count">
+                <option value="4" selected>4 Bandas</option>
+                <option value="5">5 Bandas</option>
+                <option value="6">6 Bandas</option>
+                </select>
+        </div>
+
+        <div class="bands-container">
+            <div class="band-selector" id="band1-selector">
+                <label for="band1">Banda 1 (Dígito 1)</label>
+                <select id="band1"></select>
+                <div class="color-preview" id="preview1"></div>
+            </div>
+            <div class="band-selector" id="band2-selector">
+                <label for="band2">Banda 2 (Dígito 2)</label>
+                <select id="band2"></select>
+                <div class="color-preview" id="preview2"></div>
+            </div>
+             <div class="band-selector" id="band3-selector" style="display: none;"> <label for="band3">Banda 3 (Dígito 3)</label>
+                <select id="band3"></select>
+                <div class="color-preview" id="preview3"></div>
+            </div>
+            <div class="band-selector" id="multiplier-selector">
+                <label for="multiplier">Banda Multiplicador</label>
+                <select id="multiplier"></select>
+                <div class="color-preview" id="preview-multiplier"></div>
+            </div>
+            <div class="band-selector" id="tolerance-selector">
+                <label for="tolerance">Banda Tolerancia</label>
+                <select id="tolerance"></select>
+                 <div class="color-preview" id="preview-tolerance"></div>
+            </div>
+            <div class="band-selector" id="tempcoeff-selector" style="display: none;"> <label for="tempcoeff">Banda Coef. Temp.</label>
+                <select id="tempcoeff"></select>
+                <div class="color-preview" id="preview-tempcoeff"></div>
+            </div>
+        </div>
+
+        <div class="result">
+            <h2>Resultado:</h2>
+            <p id="resistance-value">Valor: -</p>
+            <p id="tolerance-value">Tolerancia: -</p>
+            <p id="tempcoeff-value" style="display: none;">Coef. Temperatura: -</p>
+        </div>
+
+         <div class="resistor-display">
+            <div class="resistor-body">
+                <div class="band-viz" id="viz1"></div>
+                <div class="band-viz" id="viz2"></div>
+                <div class="band-viz" id="viz3"></div>
+                <div class="band-viz multiplier" id="viz-multiplier"></div>
+                <div class="band-viz tolerance" id="viz-tolerance"></div>
+                <div class="band-viz tempcoeff" id="viz-tempcoeff"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/logic.js"></script>
+</body>
+</html>

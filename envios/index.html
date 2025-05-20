@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Envíos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        .container {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+        }
+        input, select, button {
+            margin: 10px;
+            padding: 8px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Calculadora de Envíos</h2>
+        <label for="peso">Peso del paquete (kg):</label>
+        <input type="number" id="peso" min="1" required>
+        <label for="tipo">Tipo de envío:</label>
+        <select id="tipo">
+            <option value="base">Envío Base</option>
+            <option value="estandar">Envío Estándar</option>
+            <option value="nocturno">Envío Nocturno</option>
+        </select>
+        <button onclick="calcularEnvio()">Calcular</button>
+        <h3 id="resultado"></h3>
+    </div>
+
+    <script>
+        function calcularEnvio() {
+            let peso = parseFloat(document.getElementById("peso").value);
+            let tipo = document.getElementById("tipo").value;
+            let costo = 0;
+            let tiempo = 0;
+
+            if (tipo === "base") {
+                costo = 50 * peso;
+                tiempo = 5;
+                if (peso > 10) tiempo += 1;
+            } else if (tipo === "estandar") {
+                costo = 60 * peso + 20;
+                tiempo = 2;
+            } else if (tipo === "nocturno") {
+                costo = 100 * peso;
+                tiempo = 1;
+            }
+
+            document.getElementById("resultado").innerText = `Costo: ${costo} pesos | Tiempo: ${tiempo} días`;
+        }
+    </script>
+</body>
+</html>

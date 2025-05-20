@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Números Narcisistas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, button {
+            font-size: 18px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Verificar si un número es Narcisista</h1>
+    <p>Un número es "narcisista" si es igual a la suma de sus dígitos elevados a la potencia del número de dígitos.</p>
+    <input type="number" id="numero" placeholder="Ingrese un número" />
+    <button onclick="verificarNarcisista()">Verificar</button>
+    <p id="resultado"></p>
+
+    <script>
+        function esNarcisista(num) {
+            let strNum = num.toString();
+            let numDigitos = strNum.length;
+            let suma = 0;
+
+            for (let i = 0; i < numDigitos; i++) {
+                suma += Math.pow(parseInt(strNum[i]), numDigitos);
+            }
+            return suma === num;
+        }
+
+        function verificarNarcisista() {
+            let numero = parseInt(document.getElementById("numero").value);
+            let resultado = document.getElementById("resultado");
+            
+            if (isNaN(numero)) {
+                resultado.textContent = "Por favor, ingrese un número válido.";
+                return;
+            }
+            
+            if (esNarcisista(numero)) {
+                resultado.textContent = `${numero} es un número narcisista.`;
+            } else {
+                resultado.textContent = `${numero} NO es un número narcisista.`;
+            }
+        }
+    </script>
+</body>
+</html>
